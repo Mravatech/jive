@@ -55,7 +55,7 @@ class RegistrationController extends Controller
             $errors[] = 'Please enter a valid email address';
 
         // Check if Email already exists in database
-        if (filter_var($email, FILTER_VALIDATE_EMAIL) && Users::where('email', $username)->count() > 0)
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) && Users::where('email', $email)->count() > 0)
             $errors[] = 'Please enter another email address';
 
         // Username is empty
@@ -87,7 +87,7 @@ class RegistrationController extends Controller
 
         // If the error container is not empty
         if (count($errors) > 0)
-            return response()->json(['message' => 'Some data failed validation', 'data' => $errors], 400);
+            return response()->json(['message' => 'Some data failed validation', 'data' => ['errors' => $errors]], 400);
 
 
         // If all went well
