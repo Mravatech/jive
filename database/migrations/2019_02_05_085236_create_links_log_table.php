@@ -16,8 +16,8 @@ class CreateLinksLogTable extends Migration
         Schema::create('links_log', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid');
-            $table->integer('event_id');
-            $table->integer('link_id');
+            $table->unsignedInteger('event_id');
+            $table->unsignedInteger('link_id');
             $table->integer('user_id')->nullable();
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('events');
