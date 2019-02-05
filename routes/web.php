@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,3 +29,5 @@ $router->post('/authenticate', function () use ($router) {
     // Return the Output Buffer
     return ob_get_clean();
 });
+
+$router->get('/users', 'UsersController@index');
