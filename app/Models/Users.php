@@ -9,4 +9,5 @@ class Users extends Model
 {
     protected $table = "users"; 
     protected $fillable = ['username', 'email', 'phone_number', 'fname', 'lname', 'profile_picture', 'start_date', 'end_date', 'type'];
+    
 }

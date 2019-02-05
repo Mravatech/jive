@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +28,5 @@ $router->post('/authenticate', function () use ($router) {
 });
 
 $router->get('/users', 'UsersController@index');
+
+$router->post('/auth/login', 'Auth\AuthController@userAuthenticate');
