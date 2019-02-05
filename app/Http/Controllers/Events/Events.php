@@ -11,7 +11,7 @@ namespace App\Http\Controllers\Events;
 
 use App\Http\Controllers\Controller;
 
-class EventsCreate extends Controller
+class Events extends Controller
 {
     public function create() {
 
