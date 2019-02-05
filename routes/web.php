@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,3 +27,5 @@ $router->post('/authenticate', function () use ($router) {
     echo "Authenticate";
     return ob_get_clean();
 });
+
+$router->get('/users', 'UsersController@index');
