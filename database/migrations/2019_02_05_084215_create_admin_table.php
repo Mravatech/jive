@@ -22,7 +22,7 @@ class CreateAdminTable extends Migration
             $table->string('fname')->nullable();
             $table->string('lname')->nullable();
             $table->string('profile_picture')->nullable();
-            $table->string('password')->nullable();
+            $table->text('password')->nullable();
 
             $table->timestamps();
         });
