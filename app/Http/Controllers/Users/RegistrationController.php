@@ -87,7 +87,10 @@ class RegistrationController extends Controller
 
         // If the error container is not empty
         if (count($errors) > 0)
-            return response()->json(['message' => 'Some data failed validation', 'data' => ['errors' => $errors]], 400);
+            return response()->json(['status' => 400,
+                'message' => 'Some data failed validation',
+                'data' => ['errors' => $errors]
+            ], 400);
 
 
         // If all went well
@@ -106,8 +109,8 @@ class RegistrationController extends Controller
 
         // If storing of data failed
         if (!Users::create($data))
-            return response()->json(['message' => 'Registration failed, Please try again!'], 400);
+            return response()->json(['status' => 400, 'message' => 'Registration failed, Please try again!'], 400);
 
-        return response()->json(['message' => 'Registration successful!'], 200);
+        return response()->json(['status' => 200, 'message' => 'Registration successful!'], 200);
     }
 }
