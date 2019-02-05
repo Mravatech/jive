@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent;
 class Admin extends Model
 {
     protected $table = "admin"; 
-    protected $fillable = ['username', 'email', 'phone_number', 'fname', 'lname', 'profile_picture', 'start_date', 'end_date', 'type'];
+    protected $fillable = ['username', 'email', 'phone_number', 'fname', 'lname', 'profile_picture'];
 }
