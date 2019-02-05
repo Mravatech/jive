@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Users\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,18 +14,9 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
-
-
-
-$router->post('/authenticate', function () use ($router) {
-    // Start Output buffering
-    ob_start();
-    echo "Authenticate";
-    // Return the Output Buffer
-    return ob_get_clean();
+$router->group(['prefix'=>'api/v1'], function () use ($router) {
+    $router->post('/users/registration', 'Users\RegistrationController@register');
+    $router->post('/auth/login', 'Auth\AuthController@userAuthenticate');
 });
 
 $router->group(['middleware' => 'jive.auth'], function ($router) {
