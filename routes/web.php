@@ -17,3 +17,5 @@ use App\Http\Controllers\Users\RegistrationController;
 $router->group(['prefix'=>'api/v1'], function () use ($router) {
     $router->post('/users/registration', 'Users\RegistrationController@register');
 });
+
+$router->post('/auth/login', 'Auth\AuthController@userAuthenticate');
