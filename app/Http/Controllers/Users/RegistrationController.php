@@ -56,7 +56,7 @@ class RegistrationController extends Controller
 
         // Check if Email already exists in database
         if (filter_var($email, FILTER_VALIDATE_EMAIL) && Users::where('email', $username)->count() > 0)
-            $errors[] = 'Please enter another username';
+            $errors[] = 'Please enter another email address';
 
         // Username is empty
         if (strlen($username) == 0)
