@@ -16,7 +16,6 @@ class JiveMiddleware
         $token = $request->header('Authorization');
         
         if(!$token) {
-
             return response()->json([
                 'status' => 401,
                 'error' => 'Token required.'
