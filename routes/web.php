@@ -15,6 +15,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+
+$router->get('/hello', function (){
+    return 'Hello World';
+});
+
 $router->post('/authenticate', function () use ($router) {
     ob_start();
     echo "Authenticate";
