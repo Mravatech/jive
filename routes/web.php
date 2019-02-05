@@ -16,5 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/authenticate', function () use ($router) {
+    ob_start();
     echo "Authenticate";
+    return ob_get_clean();
 });
