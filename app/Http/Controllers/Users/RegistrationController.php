@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Users;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
 class RegistrationController extends Controller
@@ -56,8 +55,8 @@ class RegistrationController extends Controller
             $errors[] = 'Please enter a valid email address';
 
         // Check if Email already exists in database
-        if (filter_var($email, FILTER_VALIDATE_EMAIL) && Users::where('email', $username)->count() > 0)
-            $errors[] = 'Please enter another username';
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) && Users::where('email', $email)->count() > 0)
+            $errors[] = 'Please enter another email address';
 
         // Username is empty
         if (strlen($username) == 0)
@@ -88,7 +87,10 @@ class RegistrationController extends Controller
 
         // If the error container is not empty
         if (count($errors) > 0)
-            return response()->json(['message' => 'Some data failed validation', 'data' => $errors], 400);
+            return response()->json(['status' => 400,
+                'message' => 'Some data failed validation',
+                'data' => ['errors' => $errors]
+            ], 400);
 
 
         // If all went well
@@ -107,8 +109,8 @@ class RegistrationController extends Controller
 
         // If storing of data failed
         if (!Users::create($data))
-            return response()->json(['message' => 'Registration failed, Please try again!'], 400);
+            return response()->json(['status' => 400, 'message' => 'Registration failed, Please try again!'], 400);
 
-        return response()->json(['message' => 'Registration successful!'], 200);
+        return response()->json(['status' => 200, 'message' => 'Registration successful!'], 200);
     }
 }
