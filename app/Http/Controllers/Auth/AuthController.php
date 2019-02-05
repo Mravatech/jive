@@ -18,7 +18,7 @@ class AuthController extends Controller
     protected function jwt(Users $user) {
         $payload = [
             'iss' => "jive-jwt", 
-            'sub' => $user->id, 
+            'sub' => $user->uuid, 
             'iat' => time(),
             'exp' => time() + 60*60
         ];
@@ -38,12 +38,12 @@ class AuthController extends Controller
             'password'  => 'required'
         ]);
 
-        $login_type = filter_var($this->request->input('login'), FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';;
+        $login_type = filter_var($this->request->json('login'), FILTER_VALIDATE_EMAIL ) ? 'email' : 'username';;
 
         if($login_type == 'email'){
-            $user = Users::where('email', $this->request->input('login'))->first();
+            $user = Users::where('email', $this->request->json('login'))->first();
         }else{
-            $user = Users::where('username', $this->request->input('login'))->first();
+            $user = Users::where('username', $this->request->json('login'))->first();
         }
 
         if (!$user) {
@@ -54,9 +54,11 @@ class AuthController extends Controller
 
         }
 
-        if (Hash::check($this->request->input('password'), $user->password)) {
+        if (Hash::check($this->request->json('password'), $user->password)) {
             return response()->json([
-                'token' => $this->jwt($user)
+                'status'      => 200,
+                'message'   => 'Login Successful',
+                'data' => ['token' => $this->jwt($user) ]
             ], 200);
         }
 

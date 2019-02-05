@@ -13,12 +13,13 @@ class JiveMiddleware
 {
     public function handle($request, Closure $next, $guard = null)
     {
-        $token = $request->get('token');
+        $token = $request->header('Authorization');
         
         if(!$token) {
 
             return response()->json([
-                'error' => 'Token not provided.'
+                'status' => 401,
+                'error' => 'Token required.'
             ], 401);
         }
         try {
