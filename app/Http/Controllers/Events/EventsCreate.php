@@ -9,7 +9,11 @@
 namespace App\Http\Controllers\Events;
 
 
-class EventsCreate
-{
+use App\Http\Controllers\Controller;
 
+class EventsCreate extends Controller
+{
+    public function create() {
+
+    }
 }
