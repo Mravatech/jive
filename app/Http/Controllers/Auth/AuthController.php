@@ -18,12 +18,12 @@ class AuthController extends Controller
     protected function jwt(Users $user) {
         $payload = [
             'iss' => "jive-jwt", 
-            'sub' => $user->uuid, 
-            'iat' => time(), // Time when JWT was issued. 
-            'exp' => time() + 60*60 // Expiration time
+            'sub' => $user->id, 
+            'iat' => time(),
+            'exp' => time() + 60*60
         ];
         
-        return JWT::encode($payload, env('JWT_SECRET'));
+        return JWT::encode($payload, env('JIVE_SECRET'));
     }
 
 

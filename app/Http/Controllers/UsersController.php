@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Firebase\JWT\JWT;
+use Illuminate\Http\Request;
+use Firebase\JWT\ExpiredException;
+
 class UsersController extends Controller
 {
     /**

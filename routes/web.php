@@ -17,16 +17,11 @@ $router->get('/', function () use ($router) {
 });
 
 
-$router->get('/hello', function (){
-    return 'Hello World';
-});
-
-$router->post('/authenticate', function () use ($router) {
-    ob_start();
-    echo "Authenticate";
-    return ob_get_clean();
-});
-
-$router->get('/users', 'UsersController@index');
 
 $router->post('/auth/login', 'Auth\AuthController@userAuthenticate');
+
+$router->group(['middleware' => 'jive.auth'], function ($router) {
+
+    $router->get('/users', 'UsersController@index');
+
+});
