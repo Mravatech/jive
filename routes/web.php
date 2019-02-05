@@ -18,7 +18,13 @@ $router->get('/', function () use ($router) {
 
 
 
-$router->post('/auth/login', 'Auth\AuthController@userAuthenticate');
+$router->post('/authenticate', function () use ($router) {
+    // Start Output buffering
+    ob_start();
+    echo "Authenticate";
+    // Return the Output Buffer
+    return ob_get_clean();
+});
 
 $router->group(['middleware' => 'jive.auth'], function ($router) {
 
