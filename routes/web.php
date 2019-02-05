@@ -21,7 +21,9 @@ $router->get('/hello', function (){
 });
 
 $router->post('/authenticate', function () use ($router) {
+    // Start Output buffering
     ob_start();
     echo "Authenticate";
+    // Return the Output Buffer
     return ob_get_clean();
 });
